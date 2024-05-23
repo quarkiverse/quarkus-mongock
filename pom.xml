@@ -4,6 +4,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+        <groupId>io.quarkiverse</groupId>
+        <artifactId>quarkiverse-parent</artifactId>
+        <version>16</version>
+    </parent>
 	<groupId>io.quarkiverse.mongock</groupId>
 	<artifactId>quarkus-mongock-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -22,6 +27,12 @@
 		<quarkus.version>3.8.1</quarkus.version>
 		<surefire-plugin.version>3.2.5</surefire-plugin.version>
 	</properties>
+	<scm>
+    <connection>scm:git:git@github.com:quarkiverse/quarkus-mongock.git</connection>
+    <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-mongock.git</developerConnection>
+    <url>https://github.com/quarkiverse/quarkus-mongock</url>
+    <tag>HEAD</tag>
+  </scm>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
