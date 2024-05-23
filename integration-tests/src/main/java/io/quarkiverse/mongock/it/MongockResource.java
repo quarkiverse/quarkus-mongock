@@ -17,7 +17,6 @@
 package io.quarkiverse.mongock.it;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 
 @Path("/mongock")
@@ -25,8 +24,8 @@ import jakarta.ws.rs.Path;
 public class MongockResource {
     // add some rest methods here
 
-    @GET
-    public String hello() {
-        return "Hello mongock";
-    }
+    //    @GET
+    //    public String hello() {
+    //        return "Hello mongock";
+    //    }
 }

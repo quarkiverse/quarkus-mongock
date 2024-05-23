@@ -33,6 +33,20 @@
     <url>https://github.com/quarkiverse/quarkus-mongock</url>
     <tag>HEAD</tag>
   </scm>
+  <profiles>
+    <profile>
+        <id>it</id>
+        <activation>
+            <property>
+                <name>performRelease</name>
+                <value>!true</value>
+            </property>
+        </activation>
+        <modules>
+            <module>integration-tests</module>
+        </modules>
+    </profile>
+</profiles>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
