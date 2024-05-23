@@ -37,13 +37,13 @@ class MongockExtensionProcessor {
 
     @BuildStep
     HealthBuildItem addReadinessHealthCheck(MongockConfig mongockConfig) {
-        return new HealthBuildItem("com.rubean.mongock.extension.runtime.health.MongockReadinessHealthcheck",
+        return new HealthBuildItem("io.quarkiverse.mongock.extension.runtime.health.MongockReadinessHealthcheck",
                 mongockConfig.healthEnabled);
     }
 
     @BuildStep
     HealthBuildItem addStartupHealthCheck(MongockConfig mongockConfig) {
-        return new HealthBuildItem("com.rubean.mongock.extension.runtime.health.MongockStartupHealthcheck",
+        return new HealthBuildItem("io.quarkiverse.mongock.extension.runtime.health.MongockStartupHealthcheck",
                 mongockConfig.healthEnabled);
     }
 
