@@ -9,3 +9,6 @@
 /.DS_Store
 /target/*
 .DS_Store
+/integration-tests/.classpath
+/integration-tests/.gitignore
+/integration-tests/.project
