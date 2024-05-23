@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>io.mongock</groupId>
 			<artifactId>mongodb-sync-v4-driver</artifactId>
-			<version>5.4.0</version>
+			<version>5.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
