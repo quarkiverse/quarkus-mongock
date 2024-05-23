@@ -1,11 +1,11 @@
 package io.quarkiverse.mongock.extension.runtime;
 
-import com.mongodb.client.MongoClient;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+
+import com.mongodb.client.MongoClient;
 
 @ApplicationScoped
 public class MongockProducer {

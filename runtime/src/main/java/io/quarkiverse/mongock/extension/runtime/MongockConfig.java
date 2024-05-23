@@ -30,5 +30,5 @@ public class MongockConfig {
      */
     @ConfigItem(name = "health.enabled", defaultValue = "true")
     public boolean healthEnabled;
-//
+
 }

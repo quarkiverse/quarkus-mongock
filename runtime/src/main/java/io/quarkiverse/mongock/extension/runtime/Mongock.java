@@ -1,5 +1,7 @@
 package io.quarkiverse.mongock.extension.runtime;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.jboss.logging.Logger;
 
@@ -12,7 +14,6 @@ import io.mongock.runner.core.event.MigrationStartedEvent;
 import io.mongock.runner.core.event.MigrationSuccessEvent;
 import io.mongock.runner.core.executor.MongockRunner;
 import io.mongock.runner.standalone.MongockStandalone;
-import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class Mongock {
@@ -29,16 +30,17 @@ public class Mongock {
         String connectionString = ConfigProvider.getConfig().getValue("quarkus.mongodb.connection-string", String.class);
         ConnectionString connString = new ConnectionString(connectionString);
         String databaseName = connString.getDatabase();
-        LOG.info("produceMongoCk.. using databaseName: " + databaseName + " and mongoclient: " + client + " and scanpackage: " + config.scanPackage);
+        LOG.info("produceMongoCk.. using databaseName: " + databaseName + " and mongoclient: " + client + " and scanpackage: "
+                + config.scanPackage);
 
         this.runner = MongockStandalone.builder()
-            .setDriver(MongoSync4Driver.withDefaultLock(client, databaseName))
-            .addMigrationScanPackage(config.scanPackage)
-            .setMigrationSuccessListener(this::onSuccess)
-            .setMigrationStartedListener(this::onStart)
-            .setMigrationFailureListener(this::onFail)
-            .setEnabled(config.extensionEnabled)
-            .buildRunner();
+                .setDriver(MongoSync4Driver.withDefaultLock(client, databaseName))
+                .addMigrationScanPackage(config.scanPackage)
+                .setMigrationSuccessListener(this::onSuccess)
+                .setMigrationStartedListener(this::onStart)
+                .setMigrationFailureListener(this::onFail)
+                .setEnabled(config.extensionEnabled)
+                .buildRunner();
     }
 
     public boolean inProgress() {
@@ -64,7 +66,8 @@ public class Mongock {
     }
 
     private void onFail(MigrationFailureEvent event) {
-        LOG.error("[EVENT LISTENER] - Mongock finished with failures: " + event.getMigrationResult().getException().getMessage());
+        LOG.error(
+                "[EVENT LISTENER] - Mongock finished with failures: " + event.getMigrationResult().getException().getMessage());
         success = false;
 
     }

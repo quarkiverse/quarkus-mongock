@@ -10,10 +10,10 @@
         <version>16</version>
     </parent>
 	<groupId>io.quarkiverse.mongock</groupId>
-	<artifactId>quarkus-mongock-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>Mongock Extension - Parent</name>
+    <artifactId>quarkus-mongock-parent</artifactId>
+    <version>999-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Quarkus Mongock - Parent</name>
 	<modules>
 		<module>deployment</module>
 		<module>runtime</module>

@@ -24,7 +24,8 @@ class MongockExtensionProcessor {
 
     @Record(ExecutionTime.STATIC_INIT)
     @BuildStep
-    public void build(BuildProducer<AdditionalBeanBuildItem> additionalBeanProducer, MongockRecorder recorder, MongockConfig config,
+    public void build(BuildProducer<AdditionalBeanBuildItem> additionalBeanProducer, MongockRecorder recorder,
+            MongockConfig config,
             BuildProducer<BeanContainerListenerBuildItem> containerListenerProducer) {
 
         AdditionalBeanBuildItem unremovableProducer = AdditionalBeanBuildItem.unremovableOf(MongockProducer.class);
@@ -36,12 +37,14 @@ class MongockExtensionProcessor {
 
     @BuildStep
     HealthBuildItem addReadinessHealthCheck(MongockConfig mongockConfig) {
-        return new HealthBuildItem("com.rubean.mongock.extension.runtime.health.MongockReadinessHealthcheck", mongockConfig.healthEnabled);
+        return new HealthBuildItem("com.rubean.mongock.extension.runtime.health.MongockReadinessHealthcheck",
+                mongockConfig.healthEnabled);
     }
 
     @BuildStep
     HealthBuildItem addStartupHealthCheck(MongockConfig mongockConfig) {
-        return new HealthBuildItem("com.rubean.mongock.extension.runtime.health.MongockStartupHealthcheck", mongockConfig.healthEnabled);
+        return new HealthBuildItem("com.rubean.mongock.extension.runtime.health.MongockStartupHealthcheck",
+                mongockConfig.healthEnabled);
     }
 
     @Record(ExecutionTime.RUNTIME_INIT)

@@ -1,0 +1,5 @@
+name: quarkus-mongock
+title: Mongock
+version: dev
+nav:
+  - modules/ROOT/nav.adoc

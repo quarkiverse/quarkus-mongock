@@ -7,10 +7,10 @@
 	<parent>
 		<groupId>io.quarkiverse.mongock</groupId>
 		<artifactId>quarkus-mongock-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>999-SNAPSHOT</version>
 	</parent>
 	<artifactId>quarkus-mongock-deployment</artifactId>
-	<name>Quarkus Mongock Extension - Deployment</name>
+	<name>Quarkus Mongock - Deployment</name>
 	<dependencies>
 		<dependency>
 			<groupId>io.quarkus</groupId>
