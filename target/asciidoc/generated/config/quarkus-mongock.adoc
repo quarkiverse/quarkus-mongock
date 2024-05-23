@@ -1,0 +1,63 @@
+
+:summaryTableId: quarkus-mongock
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[[quarkus-mongock_configuration]]link:#quarkus-mongock_configuration[Configuration property]
+
+h|Type
+h|Default
+
+a|icon:lock[title=Fixed at build time] [[quarkus-mongock_quarkus-mongock-scan-package]]`link:#quarkus-mongock_quarkus-mongock-scan-package[quarkus.mongock.scan.package]`
+
+
+[.description]
+--
+allows to set the scan package path for ChangeUnit annotation, see Mongock documentation
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_MONGOCK_SCAN_PACKAGE+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_MONGOCK_SCAN_PACKAGE+++`
+endif::add-copy-button-to-env-var[]
+--|string 
+|required icon:exclamation-circle[title=Configuration property is required]
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-mongock_quarkus-mongock-enabled]]`link:#quarkus-mongock_quarkus-mongock-enabled[quarkus.mongock.enabled]`
+
+
+[.description]
+--
+allows to disable the mongock extension
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_MONGOCK_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_MONGOCK_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`false`
+
+
+a|icon:lock[title=Fixed at build time] [[quarkus-mongock_quarkus-mongock-health-enabled]]`link:#quarkus-mongock_quarkus-mongock-health-enabled[quarkus.mongock.health.enabled]`
+
+
+[.description]
+--
+allows to disable the healthchecks for the mongock extension
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_MONGOCK_HEALTH_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_MONGOCK_HEALTH_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`true`
+
+|===

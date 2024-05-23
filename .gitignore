@@ -1,0 +1,9 @@
+.settings
+/deployment/.classpath
+/deployment/.DS_Store
+/deployment/.project
+/runtime/.classpath
+/runtime/.gitignore
+/runtime/.project
+/runtime/src/.DS_Store
+/.DS_Store
