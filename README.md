@@ -21,13 +21,15 @@ To get started, add the dependency:
 
 Add the following config parameters to your application properties:
 
-```xml
-quarkus.mongock.scan.package=com.rubean.phonepos.mongodb.migrations
-quarkus.mongock.enabled=true
-quarkus.mongock.health.enabled=true
+```properties
+quarkus.mongodb.connection-string=mongodb://localhost:27017
+quarkus.mongodb.database=test
+
+# Optional, if you want to migrate automatically at startup
+quarkus.mongock.migrate-at-start=true
 ```
 
-Add the specific change units to the specified config path, see above.
+Add the specific change units in the packages of your choice, see above.
 
 ```java
 @ApplicationScoped
@@ -55,20 +57,6 @@ public class MongockChangeUnitExample {
     }
 
 }
-```
-
-
-##Note:
-current side effects, we need to overwrite/add the following dependency into the integrating quarkus project, as the quarkus bom is overwiting the library with an older 9.x version leading to mongock issues. 
-
-I tried to mitigate the issue by forcing the updated library into the exension but the quarkus bom is overwriting it with the old version.
-
-```xml
-<dependency>
-	<groupId>org.reflections</groupId>
-	<artifactId>reflections</artifactId>
-	<version>0.10.1</version>
-</dependency>
 ```
 
 <!-- 
