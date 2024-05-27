@@ -4,13 +4,16 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>io.quarkiverse.mongock</groupId>
 		<artifactId>quarkus-mongock-parent</artifactId>
 		<version>999-SNAPSHOT</version>
 	</parent>
+
 	<artifactId>quarkus-mongock</artifactId>
 	<name>Quarkus Mongock - Runtime</name>
+
 	<dependencies>
 		<dependency>
 			<groupId>io.quarkus</groupId>
@@ -18,24 +21,23 @@
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-smallrye-health</artifactId>
-			<optional>true</optional>
+			<artifactId>quarkus-mongodb-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.mongock</groupId>
 			<artifactId>mongock-standalone</artifactId>
-			<version>5.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.mongock</groupId>
 			<artifactId>mongodb-sync-v4-driver</artifactId>
-			<version>5.4.2</version>
 		</dependency>
 		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-mongodb-client</artifactId>
+			<groupId>org.graalvm.sdk</groupId>
+			<artifactId>graal-sdk</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>

@@ -1,18 +1,33 @@
 package io.quarkiverse.mongock.extension.deployment;
 
-import io.quarkiverse.mongock.extension.runtime.MongockConfig;
-import io.quarkiverse.mongock.extension.runtime.MongockProducer;
-import io.quarkiverse.mongock.extension.runtime.MongockRecorder;
-import io.quarkus.arc.deployment.AdditionalBeanBuildItem;
-import io.quarkus.arc.deployment.BeanContainerBuildItem;
-import io.quarkus.arc.deployment.BeanContainerListenerBuildItem;
-import io.quarkus.deployment.annotations.BuildProducer;
-import io.quarkus.deployment.annotations.BuildStep;
-import io.quarkus.deployment.annotations.ExecutionTime;
-import io.quarkus.deployment.annotations.Record;
-import io.quarkus.deployment.builditem.FeatureBuildItem;
-import io.quarkus.smallrye.health.deployment.spi.HealthBuildItem;
+import static io.quarkus.deployment.annotations.ExecutionTime.STATIC_INIT;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.inject.Singleton;
+
+import org.jboss.jandex.ClassType;
+import org.jboss.jandex.DotName;
+
+import com.mongodb.client.MongoClient;
+
+import io.mongock.api.annotations.ChangeUnit;
+import io.quarkiverse.mongock.extension.MongockFactory;
+import io.quarkiverse.mongock.extension.runtime.MongockRecorder;
+import io.quarkus.arc.deployment.BeanContainerBuildItem;
+import io.quarkus.arc.deployment.SyntheticBeanBuildItem;
+import io.quarkus.deployment.annotations.*;
+import io.quarkus.deployment.annotations.Record;
+import io.quarkus.deployment.builditem.CombinedIndexBuildItem;
+import io.quarkus.deployment.builditem.FeatureBuildItem;
+import io.quarkus.deployment.builditem.InitTaskCompletedBuildItem;
+import io.quarkus.deployment.builditem.ServiceStartBuildItem;
+import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
+import io.quarkus.deployment.recording.RecorderContext;
+import io.quarkus.mongodb.runtime.MongodbConfig;
+
+@BuildSteps(onlyIf = MongockEnabled.class)
 class MongockExtensionProcessor {
 
     private static final String FEATURE = "quarkus-mongock";
@@ -22,35 +37,60 @@ class MongockExtensionProcessor {
         return new FeatureBuildItem(FEATURE);
     }
 
-    @Record(ExecutionTime.STATIC_INIT)
     @BuildStep
-    public void build(BuildProducer<AdditionalBeanBuildItem> additionalBeanProducer, MongockRecorder recorder,
-            MongockConfig config,
-            BuildProducer<BeanContainerListenerBuildItem> containerListenerProducer) {
-
-        AdditionalBeanBuildItem unremovableProducer = AdditionalBeanBuildItem.unremovableOf(MongockProducer.class);
-        additionalBeanProducer.produce(unremovableProducer);
-
-        containerListenerProducer.produce(new BeanContainerListenerBuildItem(recorder.setConfig(config)));
-
+    @Record(STATIC_INIT)
+    void build(
+            MongockRecorder recorder,
+            CombinedIndexBuildItem combinedIndex,
+            RecorderContext context,
+            BuildProducer<ReflectiveClassBuildItem> reflectiveClassProducer) {
+        List<Class<?>> migrationClasses = new ArrayList<>();
+        addMigrationClasses(combinedIndex, context, reflectiveClassProducer, migrationClasses);
+        recorder.setMigrationClasses(migrationClasses);
     }
 
     @BuildStep
-    HealthBuildItem addReadinessHealthCheck(MongockConfig mongockConfig) {
-        return new HealthBuildItem("io.quarkiverse.mongock.extension.runtime.health.MongockReadinessHealthcheck",
-                mongockConfig.healthEnabled);
-    }
-
-    @BuildStep
-    HealthBuildItem addStartupHealthCheck(MongockConfig mongockConfig) {
-        return new HealthBuildItem("io.quarkiverse.mongock.extension.runtime.health.MongockStartupHealthcheck",
-                mongockConfig.healthEnabled);
-    }
-
     @Record(ExecutionTime.RUNTIME_INIT)
-    @BuildStep
-    void processMigration(MongockRecorder recorder, BeanContainerBuildItem beanContainer) {
-        recorder.migrate(beanContainer.getValue());
+    void createBeans(MongockRecorder recorder,
+            MongodbConfig mongodbConfig,
+            BuildProducer<SyntheticBeanBuildItem> syntheticBeanBuildItemBuildProducer) {
+
+        SyntheticBeanBuildItem.ExtendedBeanConfigurator configurator = SyntheticBeanBuildItem
+                .configure(MongockFactory.class)
+                .scope(Singleton.class)
+                .setRuntimeInit()
+                .unremovable()
+                .addInjectionPoint(ClassType.create(DotName.createSimple(MongoClient.class)))
+                .createWith(recorder.mongockFunction(mongodbConfig));
+
+        syntheticBeanBuildItemBuildProducer.produce(configurator.done());
     }
 
+    @BuildStep
+    @Consume(BeanContainerBuildItem.class)
+    @Record(ExecutionTime.RUNTIME_INIT)
+    ServiceStartBuildItem startMongock(MongockRecorder recorder,
+            BuildProducer<InitTaskCompletedBuildItem> initializationCompleteBuildItem) {
+        recorder.doStartActions();
+        initializationCompleteBuildItem.produce(new InitTaskCompletedBuildItem("mongock"));
+        return new ServiceStartBuildItem("mongock");
+    }
+
+    private void addMigrationClasses(
+            CombinedIndexBuildItem combinedIndex,
+            RecorderContext context,
+            BuildProducer<ReflectiveClassBuildItem> reflectiveClassProducer,
+            List<Class<?>> migrationClasses) {
+
+        combinedIndex.getIndex().getAnnotations(DotName.createSimple(ChangeUnit.class.getName())).stream()
+                .map(annotationInstance -> annotationInstance.target().asClass())
+                .forEach(classInfo -> {
+                    migrationClasses.add(context.classProxy(classInfo.name().toString()));
+                    reflectiveClassProducer.produce(
+                            ReflectiveClassBuildItem
+                                    .builder(classInfo.name().toString())
+                                    .methods()
+                                    .build());
+                });
+    }
 }

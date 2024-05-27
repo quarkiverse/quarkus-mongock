@@ -4,38 +4,39 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>io.quarkiverse.mongock</groupId>
 		<artifactId>quarkus-mongock-parent</artifactId>
 		<version>999-SNAPSHOT</version>
 	</parent>
+
 	<artifactId>quarkus-mongock-deployment</artifactId>
 	<name>Quarkus Mongock - Deployment</name>
+
 	<dependencies>
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-arc-deployment</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-mongodb-client-deployment</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>io.quarkiverse.mongock</groupId>
 			<artifactId>quarkus-mongock</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<!-- test dependencies -->
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-junit5-internal</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-mongodb-client-deployment</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-smallrye-health-spi</artifactId>
-		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
