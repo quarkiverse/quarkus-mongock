@@ -1,0 +1,12 @@
+name: "Quarkus Mongock"
+description: "This Quarkus extension allows you to use Mongock with Quarkus."
+metadata:
+  keywords:
+    - "mongock"
+    - "mongodb"
+  guide: ...
+  categories:
+    - "data"
+  status: "preview"
+config:
+  - "quarkus.mongock."

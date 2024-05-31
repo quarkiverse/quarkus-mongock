@@ -1,0 +1,65 @@
+
+:summaryTableId: quarkus-mongock
+[.configuration-legend]
+icon:lock[title=Fixed at build time] Configuration property fixed at build time - All other configuration properties are overridable at runtime
+[.configuration-reference.searchable, cols="80,.^10,.^10"]
+|===
+
+h|[[quarkus-mongock_configuration]]link:#quarkus-mongock_configuration[Configuration property]
+
+h|Type
+h|Default
+
+a|icon:lock[title=Fixed at build time] [[quarkus-mongock_quarkus-mongock-enabled]]`link:#quarkus-mongock_quarkus-mongock-enabled[quarkus.mongock.enabled]`
+
+
+[.description]
+--
+Whether Mongock is enabled *during the build*.
+
+If Mongock is disabled, the Mongock beans won't be created and Mongock won't be usable.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_MONGOCK_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_MONGOCK_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`true`
+
+
+a| [[quarkus-mongock_quarkus-mongock-migrate-at-start]]`link:#quarkus-mongock_quarkus-mongock-migrate-at-start[quarkus.mongock.migrate-at-start]`
+
+
+[.description]
+--
+`true` to execute Mongock automatically when the application starts, `false` otherwise.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_MONGOCK_MIGRATE_AT_START+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_MONGOCK_MIGRATE_AT_START+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`false`
+
+
+a| [[quarkus-mongock_quarkus-mongock-transaction-enabled]]`link:#quarkus-mongock_quarkus-mongock-transaction-enabled[quarkus.mongock.transaction-enabled]`
+
+
+[.description]
+--
+`true` to enable transaction, `false` otherwise. If the driver does not support transaction, it will be automatically disabled.
+
+ifdef::add-copy-button-to-env-var[]
+Environment variable: env_var_with_copy_button:+++QUARKUS_MONGOCK_TRANSACTION_ENABLED+++[]
+endif::add-copy-button-to-env-var[]
+ifndef::add-copy-button-to-env-var[]
+Environment variable: `+++QUARKUS_MONGOCK_TRANSACTION_ENABLED+++`
+endif::add-copy-button-to-env-var[]
+--|boolean 
+|`true`
+
+|===
