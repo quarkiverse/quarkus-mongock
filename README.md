@@ -1,33 +1,32 @@
 # Quarkus Mongock
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+[![Build](https://github.com/quarkiverse/quarkus-mongock/workflows/Build/badge.svg)](https://github.com/quarkiverse/quarkus-mongock/actions?query=workflow%3ABuild)
 [![Version](https://img.shields.io/maven-central/v/io.quarkiverse.quarkus-mongock/quarkus-mongock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.quarkus-mongock/quarkus-mongock-parent)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## Welcome to Quarkiverse!
+This Quarkus extension allows you to use [Mongock](https://mongock.io/) with Quarkus.
 
-Congratulations and thank you for creating a new Quarkus extension project in Quarkiverse!
+With Maven, add the following dependency to your `pom.xml` to get started:
 
-Feel free to replace this content with the proper description of your new project and necessary instructions how to use and contribute to it.
+```xml
+<dependency>
+    <groupId>io.quarkiverse.quarkus.mongock</groupId>
+    <artifactId>quarkus-mongock</artifactId>
+    <version>${quarkusMongockVersion}</version>
+</dependency>
+```
 
-You can find the basic info, Quarkiverse policies and conventions in [the Quarkiverse wiki](https://github.com/quarkiverse/quarkiverse/wiki).
+Or with Gradle, add the following dependency to your `build.gradle`:
 
-In case you are creating a Quarkus extension project for the first time, please follow [Building My First Extension](https://quarkus.io/guides/building-my-first-extension) guide.
+```groovy
+implementation "io.quarkiverse.quarkus.mongock:quarkus-mongock:${quarkusMongockVersion}"
+```
 
-Other useful articles related to Quarkus extension development can be found under the [Writing Extensions](https://quarkus.io/guides/#writing-extensions) guide category on the [Quarkus.io](https://quarkus.io) website.
-
-Thanks again, good luck and have fun!
-
-## Documentation
-
-The documentation for this extension should be maintained as part of this repository and it is stored in the `docs/` directory.
-
-The layout should follow the [Antora's Standard File and Directory Set](https://docs.antora.org/antora/2.3/standard-directories/).
-
-Once the docs are ready to be published, please open a PR including this repository in the [Quarkiverse Docs Antora playbook](https://github.com/quarkiverse/quarkiverse-docs/blob/main/antora-playbook.yml#L7). See an example [here](https://github.com/quarkiverse/quarkiverse-docs/pull/1)
-
-Your documentation will then be published to the https://docs.quarkiverse.io/ website.
+For more information and quickstart, you can check the complete [documentation](https://quarkiverse.github.io/quarkiverse-docs/quarkus-mongock/dev/index.html).
 
 ## Contributors ✨
 
