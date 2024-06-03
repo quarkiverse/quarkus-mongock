@@ -12,7 +12,7 @@
     <artifactId>quarkus-mongock-parent</artifactId>
     <name>Quarkus Mongock - Parent</name>
     <packaging>pom</packaging>
-    <version>999-SNAPSHOT</version>
+    <version>0.1.0</version>
 
     <modules>
         <module>deployment</module>
@@ -24,7 +24,8 @@
         <connection>scm:git:git@github.com:quarkiverse/quarkus-mongock.git</connection>
         <developerConnection>scm:git:git@github.com:quarkiverse/quarkus-mongock.git</developerConnection>
         <url>https://github.com/quarkiverse/quarkus-mongock</url>
-    </scm>
+      <tag>0.1.0</tag>
+  </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
