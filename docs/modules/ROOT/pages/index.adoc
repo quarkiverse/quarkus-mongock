@@ -2,13 +2,16 @@
 
 include::./includes/attributes.adoc[]
 
-TIP: Describe what the extension does here.
+https://mongock.io/[Mongock] is a Java based migration tool as part of your application code for Distributed environments focused in managing changes for your favourite NoSQL databases.
 
-== Installation
+== Usage
 
-If you want to use this extension, you need to add the `io.quarkiverse.quarkus-mongock:quarkus-mongock` extension first to your build file.
+To start using Mongock with your project, you just need to:
 
-For instance, with Maven, add the following dependency to your POM file:
+- create https://docs.mongock.io/v5/migration/index.html[ChangeUnits] as you usually do with Mongock.
+- activate the `migrate-at-start` option to migrate automatically or inject the `MongockFactory` object and run your migration as you normally do.
+
+Add the following dependency to your POM file:
 
 [source,xml,subs=attributes+]
 ----
@@ -19,9 +22,63 @@ For instance, with Maven, add the following dependency to your POM file:
 </dependency>
 ----
 
+Mongock support relies on the https://quarkus.io/guides/mongodb[Quarkus MongoDB client]. First, you need to add the MongoDB client configuration to the `application.properties` file :
+[source,properties]
+----
+quarkus.mongodb.connection-string=mongodb://localhost:27017
+quarkus.mongodb.database=test
+
+# Optional, if you want to migrate automatically at startup
+quarkus.mongock.migrate-at-start=true
+----
+
+Add https://docs.mongock.io/v5/migration/index.html[ChangeUnits] to the project, in the packages of your choice :
+
+[source,java]
+----
+@ChangeUnit(id="myMigrationChangeUnitId", order = "001", author = "mongock_test", systemVersion = "1")
+public class MyMigrationChangeUnit {
+    private final MongoDatabase mongoDatabase;
+
+    public MyMigrationChangeUnit(MongoDatabase mongoDatabase) {
+        this.mongoDatabase = mongoDatabase;
+    }
+
+    @Execution
+    public void migrationMethod() {
+        mongoDatabase.getCollection("fruits").createIndex(Indexes.ascending("name"));
+    }
+
+    @RollbackExecution
+    public void rollback() {
+        mongoDatabase.getCollection("fruits").dropIndex(Indexes.ascending("name"));
+    }
+}
+----
+
+And finally, you can manually run the migration by injecting the `MongockFactory` bean :
+
+[source,java]
+----
+import com.vsct.quarkus.mongock.MongockFactory;
+
+public class MigrationService {
+
+    @Inject
+    MongockFactory mongockFactory;
+
+    public void migrate() {
+        MongockRunner mongockRunner = mongockFactory.createMongockRunner();
+        mongockRunner.execute();
+    }
+}
+----
+
+== Limitations
+
+For now, this extension only support the https://docs.mongock.io/v5/driver/mongodb-sync/[MongoDB sync driver] with the default MongoDB client (no support for https://quarkus.io/guides/mongodb#multiple-mongodb-clients[multiple clients] yet).
+
 [[extension-configuration-reference]]
 == Extension Configuration Reference
-
-TIP: Remove this section if you don't have Quarkus configuration properties in your extension.
 
 include::includes/quarkus-mongock.adoc[leveloffset=+1, opts=optional]
