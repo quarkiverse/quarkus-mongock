@@ -13,7 +13,7 @@ For instance, with Maven, add the following dependency to your POM file:
 [source,xml,subs=attributes+]
 ----
 <dependency>
-    <groupId>io.quarkiverse.quarkus-mongock</groupId>
+    <groupId>io.quarkiverse.mongock</groupId>
     <artifactId>quarkus-mongock</artifactId>
     <version>{project-version}</version>
 </dependency>
