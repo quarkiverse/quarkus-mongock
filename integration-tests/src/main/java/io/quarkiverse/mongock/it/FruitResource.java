@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.it;
+package io.quarkiverse.mongock.it;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 import io.mongock.runner.core.executor.MongockRunner;
-import io.quarkiverse.quarkus.mongock.MongockFactory;
+import io.quarkiverse.mongock.MongockFactory;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)

@@ -60,7 +60,7 @@ And finally, you can manually run the migration by injecting the `MongockFactory
 
 [source,java]
 ----
-import com.vsct.quarkus.mongock.MongockFactory;
+import io.quarkiverse.mongock.MongockFactory;
 
 public class MigrationService {
 

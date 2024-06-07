@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.it;
+package io.quarkiverse.mongock.it;
 
 import static io.restassured.RestAssured.get;
 

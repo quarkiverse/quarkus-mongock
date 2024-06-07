@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.runtime;
+package io.quarkiverse.mongock.runtime;
 
 import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;

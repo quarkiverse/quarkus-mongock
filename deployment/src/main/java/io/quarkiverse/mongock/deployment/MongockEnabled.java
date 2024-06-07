@@ -1,8 +1,8 @@
-package io.quarkiverse.quarkus.mongock.deployment;
+package io.quarkiverse.mongock.deployment;
 
 import java.util.function.BooleanSupplier;
 
-import io.quarkiverse.quarkus.mongock.runtime.MongockBuildTimeConfig;
+import io.quarkiverse.mongock.runtime.MongockBuildTimeConfig;
 
 /**
  * Supplier that can be used to only run build steps
