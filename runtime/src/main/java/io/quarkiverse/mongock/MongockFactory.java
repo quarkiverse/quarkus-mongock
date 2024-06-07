@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock;
+package io.quarkiverse.mongock;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import com.mongodb.client.MongoClient;
 import io.mongock.driver.mongodb.sync.v4.driver.MongoSync4Driver;
 import io.mongock.runner.core.executor.MongockRunner;
 import io.mongock.runner.standalone.MongockStandalone;
-import io.quarkiverse.quarkus.mongock.runtime.MongockRuntimeConfig;
+import io.quarkiverse.mongock.runtime.MongockRuntimeConfig;
 import io.quarkus.mongodb.runtime.MongodbConfig;
 
 public class MongockFactory {

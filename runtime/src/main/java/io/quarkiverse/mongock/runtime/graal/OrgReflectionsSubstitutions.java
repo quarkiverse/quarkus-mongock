@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.runtime.graal;
+package io.quarkiverse.mongock.runtime.graal;
 
 import java.util.HashMap;
 import java.util.Map;

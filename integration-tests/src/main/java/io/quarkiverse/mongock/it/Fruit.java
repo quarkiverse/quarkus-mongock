@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.it;
+package io.quarkiverse.mongock.it;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import io.quarkus.mongodb.panache.common.MongoEntity;

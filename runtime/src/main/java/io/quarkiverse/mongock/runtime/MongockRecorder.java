@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.runtime;
+package io.quarkiverse.mongock.runtime;
 
 import java.util.List;
 import java.util.function.Function;
@@ -8,7 +8,7 @@ import org.jboss.logging.Logger;
 import com.mongodb.client.MongoClient;
 
 import io.mongock.runner.core.executor.MongockRunner;
-import io.quarkiverse.quarkus.mongock.MongockFactory;
+import io.quarkiverse.mongock.MongockFactory;
 import io.quarkus.arc.Arc;
 import io.quarkus.arc.InstanceHandle;
 import io.quarkus.arc.SyntheticCreationalContext;

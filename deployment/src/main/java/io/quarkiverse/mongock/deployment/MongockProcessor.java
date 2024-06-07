@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.deployment;
+package io.quarkiverse.mongock.deployment;
 
 import static io.quarkus.deployment.annotations.ExecutionTime.STATIC_INIT;
 
@@ -14,8 +14,8 @@ import org.jboss.jandex.DotName;
 import com.mongodb.client.MongoClient;
 
 import io.mongock.api.annotations.ChangeUnit;
-import io.quarkiverse.quarkus.mongock.MongockFactory;
-import io.quarkiverse.quarkus.mongock.runtime.MongockRecorder;
+import io.quarkiverse.mongock.MongockFactory;
+import io.quarkiverse.mongock.runtime.MongockRecorder;
 import io.quarkus.arc.deployment.BeanContainerBuildItem;
 import io.quarkus.arc.deployment.SyntheticBeanBuildItem;
 import io.quarkus.deployment.annotations.*;

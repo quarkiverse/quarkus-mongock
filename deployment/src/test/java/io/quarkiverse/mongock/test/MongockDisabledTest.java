@@ -1,4 +1,4 @@
-package io.quarkiverse.quarkus.mongock.test;
+package io.quarkiverse.mongock.test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -8,7 +8,7 @@ import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import io.quarkiverse.quarkus.mongock.MongockFactory;
+import io.quarkiverse.mongock.MongockFactory;
 import io.quarkus.test.QuarkusUnitTest;
 
 public class MongockDisabledTest {

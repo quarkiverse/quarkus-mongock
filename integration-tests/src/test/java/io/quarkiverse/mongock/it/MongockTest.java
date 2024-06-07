@@ -1,6 +1,5 @@
-package io.quarkiverse.quarkus.mongock.it;
+package io.quarkiverse.mongock.it;
 
-import static io.quarkiverse.quarkus.mongock.it.MongockTestUtils.listFruits;
 import static io.restassured.RestAssured.post;
 
 import org.junit.jupiter.api.Assertions;
@@ -13,8 +12,8 @@ public class MongockTest {
 
     @Test
     public void testMigration() {
-        Assertions.assertEquals(0, listFruits().size());
+        Assertions.assertEquals(0, MongockTestUtils.listFruits().size());
         post("/migrate");
-        Assertions.assertEquals(1, listFruits().size());
+        Assertions.assertEquals(1, MongockTestUtils.listFruits().size());
     }
 }
