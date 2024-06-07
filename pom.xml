@@ -8,7 +8,7 @@
         <version>16</version>
     </parent>
 
-    <groupId>io.quarkiverse.quarkus-mongock</groupId>
+    <groupId>io.quarkiverse.mongock</groupId>
     <artifactId>quarkus-mongock-parent</artifactId>
     <name>Quarkus Mongock - Parent</name>
     <packaging>pom</packaging>

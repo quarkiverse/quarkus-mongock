@@ -5,7 +5,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Build](https://github.com/quarkiverse/quarkus-mongock/workflows/Build/badge.svg)](https://github.com/quarkiverse/quarkus-mongock/actions?query=workflow%3ABuild)
-[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.quarkus-mongock/quarkus-mongock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.quarkus-mongock/quarkus-mongock-parent)
+[![Version](https://img.shields.io/maven-central/v/io.quarkiverse.mongock/quarkus-mongock?logo=apache-maven&style=flat-square)](https://central.sonatype.com/artifact/io.quarkiverse.mongock/quarkus-mongock-parent)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This Quarkus extension allows you to use [Mongock](https://mongock.io/) with Quarkus.
@@ -14,7 +14,7 @@ With Maven, add the following dependency to your `pom.xml` to get started:
 
 ```xml
 <dependency>
-    <groupId>io.quarkiverse.quarkus.mongock</groupId>
+    <groupId>io.quarkiverse.mongock</groupId>
     <artifactId>quarkus-mongock</artifactId>
     <version>${quarkusMongockVersion}</version>
 </dependency>
@@ -23,7 +23,7 @@ With Maven, add the following dependency to your `pom.xml` to get started:
 Or with Gradle, add the following dependency to your `build.gradle`:
 
 ```groovy
-implementation "io.quarkiverse.quarkus.mongock:quarkus-mongock:${quarkusMongockVersion}"
+implementation "io.quarkiverse.mongock:quarkus-mongock:${quarkusMongockVersion}"
 ```
 
 For more information and quickstart, you can check the complete [documentation](https://quarkiverse.github.io/quarkiverse-docs/quarkus-mongock/dev/index.html).
