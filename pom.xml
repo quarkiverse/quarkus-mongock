@@ -31,7 +31,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <quarkus.version>3.11.1</quarkus.version>
+        <quarkus.version>3.11.2</quarkus.version>
         <mongock.version>5.4.4</mongock.version>
     </properties>
 
