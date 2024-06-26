@@ -33,6 +33,13 @@
             <artifactId>graal-sdk</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Temporary until https://github.com/mongock/mongock/issues/679 is fixed -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.14.0</version>
+        </dependency>
     </dependencies>
 
     <build>
