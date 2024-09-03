@@ -18,7 +18,7 @@ public class MongockEnabled implements BooleanSupplier {
 
     @Override
     public boolean getAsBoolean() {
-        return config.enabled;
+        return config.enabled();
     }
 
 }
