@@ -1,23 +1,25 @@
 package io.quarkiverse.mongock.runtime;
 
-import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
+import io.smallrye.config.ConfigMapping;
+import io.smallrye.config.WithDefault;
 
-@ConfigRoot(name = "mongock", phase = ConfigPhase.RUN_TIME)
-public final class MongockRuntimeConfig {
+@ConfigMapping(prefix = "quarkus.mongock")
+@ConfigRoot(phase = ConfigPhase.RUN_TIME)
+public interface MongockRuntimeConfig {
 
     /**
      * {@code true} to execute Mongock automatically when the application starts, {@code false} otherwise.
      */
-    @ConfigItem
-    public boolean migrateAtStart;
+    @WithDefault("false")
+    boolean migrateAtStart();
 
     /**
      * {@code true} to enable transaction, {@code false} otherwise. If the driver does not support transaction, it will be
      * automatically disabled.
      */
-    @ConfigItem(defaultValue = "true")
-    public boolean transactionEnabled;
+    @WithDefault("true")
+    boolean transactionEnabled();
 
 }

@@ -1,11 +1,13 @@
 package io.quarkiverse.mongock.runtime;
 
-import io.quarkus.runtime.annotations.ConfigItem;
 import io.quarkus.runtime.annotations.ConfigPhase;
 import io.quarkus.runtime.annotations.ConfigRoot;
+import io.smallrye.config.ConfigMapping;
+import io.smallrye.config.WithDefault;
 
-@ConfigRoot(name = "mongock", phase = ConfigPhase.BUILD_AND_RUN_TIME_FIXED)
-public final class MongockBuildTimeConfig {
+@ConfigMapping(prefix = "quarkus.mongock")
+@ConfigRoot(phase = ConfigPhase.BUILD_AND_RUN_TIME_FIXED)
+public interface MongockBuildTimeConfig {
 
     /**
      * Whether Mongock is enabled *during the build*.
@@ -14,6 +16,6 @@ public final class MongockBuildTimeConfig {
      *
      * @asciidoclet
      */
-    @ConfigItem(defaultValue = "true")
-    public boolean enabled;
+    @WithDefault("true")
+    boolean enabled();
 }

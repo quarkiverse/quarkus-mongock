@@ -51,7 +51,7 @@ public class MongockRecorder {
         MongockFactory mongockFactory = mongockFactoryInstanceHandle.get();
         MongockRunner mongockRunner = mongockFactory.createMongockRunner();
 
-        if (config.getValue().migrateAtStart) {
+        if (config.getValue().migrateAtStart()) {
             mongockRunner.execute();
         }
     }
