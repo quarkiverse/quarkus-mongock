@@ -40,7 +40,7 @@ public class MongockFactory {
                 .setDriver(
                         MongoSync4Driver.withDefaultLock(mongoClient, databaseName))
                 .addMigrationClasses(migrationClasses)
-                .setTransactionEnabled(mongockRuntimeConfig.transactionEnabled())
+                .setTransactional(mongockRuntimeConfig.transactionEnabled())
                 // See https://github.com/mongock/mongock/issues/661
                 .setLockGuardEnabled(false)
                 .buildRunner();
