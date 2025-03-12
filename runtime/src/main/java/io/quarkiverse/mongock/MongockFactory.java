@@ -32,7 +32,7 @@ public class MongockFactory {
     }
 
     public MongockRunner createMongockRunner() {
-        String databaseName = mongodbConfig.defaultMongoClientConfig.database
+        String databaseName = mongodbConfig.defaultMongoClientConfig().database()
                 .orElseThrow(() -> new IllegalStateException("The database property was not configured for " +
                         "the default Mongo Client (via 'quarkus.mongodb.database')"));
 
