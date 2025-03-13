@@ -12,7 +12,6 @@ import io.quarkiverse.mongock.MongockFactory;
 import io.quarkus.arc.Arc;
 import io.quarkus.arc.InstanceHandle;
 import io.quarkus.arc.SyntheticCreationalContext;
-import io.quarkus.mongodb.runtime.MongodbConfig;
 import io.quarkus.runtime.RuntimeValue;
 import io.quarkus.runtime.annotations.Recorder;
 
@@ -34,10 +33,10 @@ public class MongockRecorder {
         MongockRecorder.migrationClasses = migrationClasses;
     }
 
-    public Function<SyntheticCreationalContext<MongockFactory>, MongockFactory> mongockFunction(MongodbConfig mongodbConfig) {
+    public Function<SyntheticCreationalContext<MongockFactory>, MongockFactory> mongockFunction() {
         return (SyntheticCreationalContext<MongockFactory> context) -> {
             MongoClient mongoClient = context.getInjectedReference(MongoClient.class);
-            return new MongockFactory(mongoClient, mongodbConfig, config.getValue(), migrationClasses);
+            return new MongockFactory(mongoClient, config.getValue(), migrationClasses);
         };
     }
 

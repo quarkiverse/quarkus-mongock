@@ -23,7 +23,6 @@ import io.quarkus.deployment.annotations.Record;
 import io.quarkus.deployment.builditem.*;
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
 import io.quarkus.deployment.recording.RecorderContext;
-import io.quarkus.mongodb.runtime.MongodbConfig;
 
 @BuildSteps(onlyIf = MongockEnabled.class)
 class MongockProcessor {
@@ -43,7 +42,6 @@ class MongockProcessor {
     @BuildStep
     @Record(ExecutionTime.RUNTIME_INIT)
     void createBeans(MongockRecorder recorder,
-            MongodbConfig mongodbConfig,
             BuildProducer<SyntheticBeanBuildItem> syntheticBeanBuildItemBuildProducer) {
 
         SyntheticBeanBuildItem.ExtendedBeanConfigurator configurator = SyntheticBeanBuildItem
@@ -52,7 +50,7 @@ class MongockProcessor {
                 .setRuntimeInit()
                 .unremovable()
                 .addInjectionPoint(ClassType.create(DotName.createSimple(MongoClient.class)))
-                .createWith(recorder.mongockFunction(mongodbConfig));
+                .createWith(recorder.mongockFunction());
 
         syntheticBeanBuildItemBuildProducer.produce(configurator.done());
     }
