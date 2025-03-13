@@ -2,37 +2,35 @@ package io.quarkiverse.mongock;
 
 import java.util.List;
 
+import org.eclipse.microprofile.config.ConfigProvider;
+
 import com.mongodb.client.MongoClient;
 
 import io.mongock.driver.mongodb.sync.v4.driver.MongoSync4Driver;
 import io.mongock.runner.core.executor.MongockRunner;
 import io.mongock.runner.standalone.MongockStandalone;
 import io.quarkiverse.mongock.runtime.MongockRuntimeConfig;
-import io.quarkus.mongodb.runtime.MongodbConfig;
 
 public class MongockFactory {
 
     private final MongoClient mongoClient;
-
-    private final MongodbConfig mongodbConfig;
 
     private final MongockRuntimeConfig mongockRuntimeConfig;
     private final List<Class<?>> migrationClasses;
 
     public MongockFactory(
             MongoClient mongoClient,
-            MongodbConfig mongodbConfig,
             MongockRuntimeConfig mongockRuntimeConfig,
             List<Class<?>> migrationClasses) {
 
         this.mongoClient = mongoClient;
-        this.mongodbConfig = mongodbConfig;
         this.mongockRuntimeConfig = mongockRuntimeConfig;
         this.migrationClasses = migrationClasses;
     }
 
     public MongockRunner createMongockRunner() {
-        String databaseName = mongodbConfig.defaultMongoClientConfig.database
+
+        String databaseName = ConfigProvider.getConfig().getOptionalValue("quarkus.mongodb.database", String.class)
                 .orElseThrow(() -> new IllegalStateException("The database property was not configured for " +
                         "the default Mongo Client (via 'quarkus.mongodb.database')"));
 
